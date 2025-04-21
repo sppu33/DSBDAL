@@ -1,0 +1,124 @@
+Microsoft Windows [Version 10.0.26100.3775]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>start-all.sh
+
+C:\Windows\System32>start-all.exe
+'start-all.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Windows\System32>start-all.cmd
+This script is Deprecated. Instead use start-dfs.cmd and start-yarn.cmd
+starting yarn daemons
+
+C:\Windows\System32>jps
+21008 Jps
+14932 Eclipse
+21828 NameNode
+16616 DataNode
+17148 ResourceManager
+332 NodeManager
+
+C:\Windows\System32>hdfs dfs -mkdir /31215
+
+C:\Windows\System32>hdfs dfs -mkdir /31215/weatherinput
+
+C:\Windows\System32>hdfs dfs -put C:\Users\dande\Downloads\hadoop2\input2.txt /31215/weatherinput
+put: `C:/Users/dande/Downloads/hadoop2/input2.txt': No such file or directory
+
+C:\Windows\System32>hdfs dfs -put C:\Users\dande\Downloads\hadoop2\input2.txt /31215/
+put: `C:/Users/dande/Downloads/hadoop2/input2.txt': No such file or directory
+
+C:\Windows\System32>hdfs dfs -put C:\Users\dande\Downloads\hadoop2\input2.txt /31215
+put: `C:/Users/dande/Downloads/hadoop2/input2.txt': No such file or directory
+
+C:\Windows\System32>hdfs dfs -put C:\Users\dande\Downloads\hadoop2\input2.txt.txt /31215/weatherinput
+
+C:\Windows\System32>hadoop jar C:\Users\dande\Downloads\hadoop2\weatherDatajar.jar WeatherDataAverage /31215/weatherinput /31215/output
+2025-04-18 22:48:30,768 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+2025-04-18 22:48:31,313 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2025-04-18 22:48:31,334 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/dande/.staging/job_1744996249866_0001
+2025-04-18 22:48:31,499 INFO input.FileInputFormat: Total input files to process : 1
+2025-04-18 22:48:31,562 INFO mapreduce.JobSubmitter: number of splits:1
+2025-04-18 22:48:31,648 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1744996249866_0001
+2025-04-18 22:48:31,650 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2025-04-18 22:48:31,776 INFO conf.Configuration: resource-types.xml not found
+2025-04-18 22:48:31,777 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2025-04-18 22:48:32,178 INFO impl.YarnClientImpl: Submitted application application_1744996249866_0001
+2025-04-18 22:48:32,207 INFO mapreduce.Job: The url to track the job: http://Jarvis21:8088/proxy/application_1744996249866_0001/
+2025-04-18 22:48:32,208 INFO mapreduce.Job: Running job: job_1744996249866_0001
+2025-04-18 22:48:39,355 INFO mapreduce.Job: Job job_1744996249866_0001 running in uber mode : false
+2025-04-18 22:48:39,357 INFO mapreduce.Job:  map 0% reduce 0%
+2025-04-18 22:48:44,531 INFO mapreduce.Job:  map 100% reduce 0%
+2025-04-18 22:48:49,567 INFO mapreduce.Job:  map 100% reduce 100%
+2025-04-18 22:48:50,590 INFO mapreduce.Job: Job job_1744996249866_0001 completed successfully
+2025-04-18 22:48:50,657 INFO mapreduce.Job: Counters: 54
+        File System Counters
+                FILE: Number of bytes read=4710
+                FILE: Number of bytes written=488459
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=1984
+                HDFS: Number of bytes written=60
+                HDFS: Number of read operations=8
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=2
+                HDFS: Number of bytes read erasure-coded=0
+        Job Counters
+                Launched map tasks=1
+                Launched reduce tasks=1
+                Data-local map tasks=1
+                Total time spent by all maps in occupied slots (ms)=2755
+                Total time spent by all reduces in occupied slots (ms)=2918
+                Total time spent by all map tasks (ms)=2755
+                Total time spent by all reduce tasks (ms)=2918
+                Total vcore-milliseconds taken by all map tasks=2755
+                Total vcore-milliseconds taken by all reduce tasks=2918
+                Total megabyte-milliseconds taken by all map tasks=2821120
+                Total megabyte-milliseconds taken by all reduce tasks=2988032
+        Map-Reduce Framework
+                Map input records=96
+                Map output records=288
+                Map output bytes=4128
+                Map output materialized bytes=4710
+                Input split bytes=120
+                Combine input records=0
+                Combine output records=0
+                Reduce input groups=3
+                Reduce shuffle bytes=4710
+                Reduce input records=288
+                Reduce output records=3
+                Spilled Records=576
+                Shuffled Maps =1
+                Failed Shuffles=0
+                Merged Map outputs=1
+                GC time elapsed (ms)=54
+                CPU time spent (ms)=1030
+                Physical memory (bytes) snapshot=539652096
+                Virtual memory (bytes) snapshot=857989120
+                Total committed heap usage (bytes)=480772096
+                Peak Map Physical memory (bytes)=321740800
+                Peak Map Virtual memory (bytes)=481927168
+                Peak Reduce Physical memory (bytes)=217911296
+                Peak Reduce Virtual memory (bytes)=376061952
+        Shuffle Errors
+                BAD_ID=0
+                CONNECTION=0
+                IO_ERROR=0
+                WRONG_LENGTH=0
+                WRONG_MAP=0
+                WRONG_REDUCE=0
+        File Input Format Counters
+                Bytes Read=1864
+        File Output Format Counters
+                Bytes Written=60
+
+C:\Windows\System32>hdfs dfs -cat /31215/output/*
+DewPoint        59.99005
+Temperature     53.58261
+WindSpeed       1009.55023
+
+C:\Windows\System32>hdfs dfs -get /31215/output/part-r-00000 C:\Users\dande\Downloads\hadoop2\output.txt
+
+C:\Windows\System32>

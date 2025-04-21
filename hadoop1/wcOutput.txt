@@ -1,0 +1,8 @@
+Bharti	1
+Bhartiya	1
+Hadapsar	2
+JSPM	2
+PPCOE	1
+Pict	2
+Pune	3
+Sppu	1

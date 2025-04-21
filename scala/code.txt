@@ -1,0 +1,42 @@
+C:\Windows\System32>spark-shell
+25/04/21 10:18:20 WARN Shell: Did not find winutils.exe: java.io.FileNotFoundException: Hadoop bin directory does not exist: C:\hadoop\bin\bin -see https://wiki.apache.org/hadoop/WindowsProblems
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+Spark context Web UI available at http://Jarvis21:4040
+Spark context available as 'sc' (master = local[*], app id = local-1745210907345).
+Spark session available as 'spark'.
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 3.5.5
+      /_/
+
+Using Scala version 2.12.18 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_411)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> val textFile=spark.read.textFile("""C:\Users\dande\Downloads\scala\wordcntinput.txt""")
+textFile: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> val words=textFile.flatMap(line=>line.split(" "))
+words: org.apache.spark.sql.Dataset[String] = [value: string]
+
+scala> val worCounts=words.groupBy("value").count()
+worCounts: org.apache.spark.sql.DataFrame = [value: string, count: bigint]
+
+scala> worCounts.show()
++--------+-----+
+|   value|count|
++--------+-----+
+|Bhartiya|    1|
+|   PPCOE|    1|
+|    JSPM|    2|
+|    Pune|    3|
+|Hadapsar|    2|
+|    Pict|    2|
+|    Sppu|    1|
+|  Bharti|    1|
++--------+-----+
+
+scala> :quit
