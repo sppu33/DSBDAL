@@ -19,3 +19,7 @@ object WordCount{
         query.awaitTermination()
     }
 }
+
+
+// to run WordCount.main(Array())
+// nc -lk 9999 
